@@ -36,26 +36,19 @@ async function uploadDocument() {
         if (response.ok) {
             // Update global state
             appState.documentsUploaded++;
-            appState.totalChunks += data.chunks;
-            appState.lastMetadata = data.metadata;
             
             // Show success
             document.getElementById('uploadStatus').innerHTML = `
-                <div class="alert alert-success">
-                    <i class="bi bi-check-circle me-1"></i>
-                    <strong>${data.filename}</strong> uploaded successfully!
-                    <br><small>${data.chunks} chunks processed, ${data.entity_count} entities found</small>
-                </div>
+            <div class="alert alert-success">
+                <i class="bi bi-check-circle me-1"></i>
+                <strong>${data.filename}</strong> uploaded successfully!
+            </div>
             `;
             
             // Update panels
             updateStatsPanel({
-                documentsUploaded: appState.documentsUploaded,
-                totalChunks: appState.totalChunks,
-                vectorCount: data.ingestion_result?.chunks_added
+                documentsUploaded: appState.documentsUploaded
             });
-            
-            updateMetadataPanel(data.metadata);
             
             // Clear file input
             fileInput.value = '';

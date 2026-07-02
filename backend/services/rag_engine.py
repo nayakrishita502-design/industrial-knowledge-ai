@@ -40,7 +40,7 @@ Answer:"""
         if not google_api_key:
             raise ValueError("Google API key is required")
         
-        os.environ["*******"] = google_api_key
+        os.environ["GOOGLE_API_KEY"] = google_api_key
         
         # Initialize LLM
         self.llm = GoogleGenerativeAI(

@@ -47,7 +47,7 @@ app = create_app()
 
 if __name__ == "__main__":
     app.run(
-        host="127.0.0.1",
-        port=Config.PORT,
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", Config.PORT)),
         debug=Config.DEBUG
     )
